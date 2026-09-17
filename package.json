@@ -1,5 +1,5 @@
 {
-  "name": "@tulvez/gps-takip",
+  "name": "@tulvez/geotrack",
   "version": "1.0.0",
   "description": "Mavi ok GPS takip çekirdeği — self-host Kalman filtre + yol-yönlü ok + 3B eğim (Tulvez Harita'dan)",
   "type": "module",

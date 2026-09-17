@@ -1,4 +1,4 @@
-# API — @tulvez/gps-takip
+# API — @tulvez/geotrack
 
 **Sıfır bağımlılık garantisi:** `src/` altında `react` dışında hiçbir import
 yoktur (doğrulandı). `react` yalnız `useUserLocation` hook'u içindir (peer).
@@ -7,7 +7,7 @@ yoktur (doğrulandı). `react` yalnız `useUserLocation` hook'u içindir (peer).
 ## Kalman — `src/kalman.js`
 
 ```js
-import { PositionKalman } from '@tulvez/gps-takip/kalman'
+import { PositionKalman } from '@tulvez/geotrack/kalman'
 const kf = new PositionKalman()
 kf.seed(lat, lng, accuracyM, speedMS, headingDeg, nowMs) // ilk fix
 kf.update(lat, lng, accuracyM, nowMs)                    // → true | false (red)
@@ -25,7 +25,7 @@ kf.reset()  // çapayı sıfırla
 
 ```js
 import { getRoadBearing, getSegmentBearing, computeArrowRotation,
-  computeArrowTilt, angleDiff, lerpAngle, clampTurnRate } from '@tulvez/gps-takip/ok'
+  computeArrowTilt, angleDiff, lerpAngle, clampTurnRate } from '@tulvez/geotrack/ok'
 ```
 
 | Fonksiyon | İmza | Not |
@@ -41,7 +41,7 @@ import { getRoadBearing, getSegmentBearing, computeArrowRotation,
 ## Hook — `src/useUserLocation.js`
 
 ```jsx
-import { useUserLocation } from '@tulvez/gps-takip'
+import { useUserLocation } from '@tulvez/geotrack'
 ```
 
 GPS izleme + Kalman + watchdog (12sn sessizlikte toparlanma) + ivmeölçer

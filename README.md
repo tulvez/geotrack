@@ -1,4 +1,4 @@
-# @tulvez/gps-takip 🧭
+# @tulvez/geotrack 🧭
 
 Tulvez Harita'nın **mavi ok GPS takip çekirdeği** — harici SDK yok.
 **Sıfır bağımlılık ZORUNLUDUR** bu pakette: `react` yalnız hook için peer'dir,
@@ -24,14 +24,14 @@ Belgeler: [API](docs/API.md) · [Canlı demo](demo/index.html)
 ## Kullanım
 
 ```jsx
-import { useUserLocation } from '@tulvez/gps-takip'
+import { useUserLocation } from '@tulvez/geotrack'
 
 const { konum, hiz, bearing } = useUserLocation({ izle: true })
 // oku döndür: style={{ transform: `rotate(${yolYonu - kameraAcisi}deg)` }}
 ```
 
 ```js
-import { getRoadBearing } from '@tulvez/gps-takip/ok'
+import { getRoadBearing } from '@tulvez/geotrack/ok'
 const yon = getRoadBearing(rotaGeometrisi, ilerlemeOrani) // ~60m ortalamalı
 ```
 
