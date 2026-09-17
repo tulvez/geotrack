@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>gps-takip demosu — mavi ok + Kalman</title>
+<style>
+  html, body { margin: 0; height: 100%; background: #0b0e14; color: #e8ecf3;
+    font-family: ui-monospace, Menlo, Consolas, monospace; }
+  #ust { padding: 14px 18px; border-bottom: 1px solid #1d2534; }
+  #ust b { color: #c8a96a; } #ust span { color: #8b96ab; font-size: 13px; }
+  #sahne { display: block; margin: 12px auto; background: #0e1420;
+    border: 1px solid #1d2534; border-radius: 12px; }
+  #alt { display: flex; gap: 26px; justify-content: center; padding: 6px;
+    font-size: 14px; flex-wrap: wrap; }
+  .kutu b { font-size: 20px; } .ham { color: #e5605e; } .flt { color: #5ed08a; }
+  .ok { color: #5b8def; }
+</style>
+</head>
+<body>
+<div id="ust"><b>mavi ok</b> <span>@tulvez/gps-takip — canlı demo (benzetim: gürültülü GPS → Kalman)</span></div>
+<canvas id="sahne" width="860" height="480"></canvas>
+<div id="alt">
+  <div class="kutu ham">ham sapma <b id="dHam">–</b> m</div>
+  <div class="kutu flt">filtreli sapma <b id="dFlt">–</b> m</div>
+  <div class="kutu ok">ok yönü <b id="dYon">–</b>°</div>
+  <div class="kutu">hız <b id="dHiz">–</b> m/s</div>
+</div>
+<script type="module">
+import { PositionKalman } from '../src/kalman.js'
+import { getSegmentBearing } from '../src/arrow.js'
+
+const cv = document.getElementById('sahne'), g = cv.getContext('2d')
+// Gerçek rota: L-dönüşlü parkur (metre, yerel)
+const rota = []
+for (let x = 0; x <= 300; x += 1.5) rota.push([x, 0])
+for (let y = 1.5; y <= 180; y += 1.5) rota.push([300, y])
+const geo = { coordinates: rota.map(([x, y]) => [28.9 + x / 90000, 41.0 + y / 111320]) }
+const kf = new PositionKalman()
+const A_LAT = 41.0, A_LNG = 28.9
+const toLL = (x, y) => [A_LAT + y / 111320, A_LNG + x / (111320 * Math.cos(A_LAT * Math.PI / 180))]
+const toXY = (lat, lng) => [(lng - A_LNG) * 111320 * Math.cos(A_LAT * Math.PI / 180), (lat - A_LAT) * 111320]
+kf.seed(A_LAT, A_LNG, 10, 8, 90, performance.now())
+const SX = (x) => 60 + x * 2.3, SY = (y) => 440 - y * 2.3
+let i = 0, hamTop = 0, fltTop = 0, n = 0
+const gauss = () => (Math.random() + Math.random() + Math.random() - 1.5) * 10
+
+function kare() {
+  g.clearRect(0, 0, 860, 480)
+  g.strokeStyle = '#1a2334'; g.lineWidth = 1
+  for (let x = 0; x < 860; x += 43) { g.beginPath(); g.moveTo(x, 0); g.lineTo(x, 480); g.stroke() }
+  for (let y = 0; y < 480; y += 43) { g.beginPath(); g.moveTo(0, y); g.lineTo(860, y); g.stroke() }
+  // gerçek rota
+  g.strokeStyle = '#3a4a66'; g.lineWidth = 5; g.beginPath()
+  rota.forEach(([x, y], k) => k ? g.lineTo(SX(x), SY(y)) : g.moveTo(SX(x), SY(y)))
+  g.stroke()
+  // gerçek konum
+  const [gx, gy] = rota[Math.min(i, rota.length - 1)]
+  // gürültülü ölçüm + Kalman
+  const mx = gx + gauss(), my = gy + gauss()
+  const [mLat, mLng] = toLL(mx, my)
+  kf.update(mLat, mLng, 12, performance.now())
+  const st = kf.getState() || { lat: mLat, lng: mLng, speed: 0 }
+  const [fx, fy] = toXY(st.lat, st.lng)
+  const dh = Math.hypot(mx - gx, my - gy), df = Math.hypot(fx - gx, fy - gy)
+  hamTop += dh; fltTop += df; n++
+  // ham (kırmızı) + filtreli iz (yeşil)
+  g.fillStyle = '#e5605e88'
+  g.fillRect(SX(mx) - 2, SY(my) - 2, 4, 4)
+  // mavi ok
+  const t = Math.min(i, rota.length - 1) / (rota.length - 1)
+  const yon = getSegmentBearing(geo, t) ?? 0
+  g.save(); g.translate(SX(fx), SY(fy)); g.rotate((yon) * Math.PI / 180)
+  g.fillStyle = '#5b8def'
+  g.beginPath(); g.moveTo(0, -16); g.lineTo(11, 12); g.lineTo(0, 5); g.lineTo(-11, 12)
+  g.closePath(); g.fill()
+  g.strokeStyle = '#cfe0ff'; g.lineWidth = 2; g.stroke(); g.restore()
+  document.getElementById('dHam').textContent = (hamTop / n).toFixed(1)
+  document.getElementById('dFlt').textContent = (fltTop / n).toFixed(1)
+  document.getElementById('dYon').textContent = Math.round(yon)
+  document.getElementById('dHiz').textContent = (st.speed ?? 0).toFixed(1)
+  i = (i + 1) % rota.length
+  requestAnimationFrame(() => setTimeout(kare, 80))
+}
+kare()
+</script>
+</body>
+</html>

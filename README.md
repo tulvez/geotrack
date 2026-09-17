@@ -1,7 +1,15 @@
 # @tulvez/gps-takip 🧭
 
-Tulvez Harita'nın **mavi ok GPS takip çekirdeği** — harici SDK yok, bağımlılık
-yok (yalnız `react` peer). Canlıda milyonlarca konum düzeltmesinde sınandı.
+Tulvez Harita'nın **mavi ok GPS takip çekirdeği** — harici SDK yok.
+**Sıfır bağımlılık ZORUNLUDUR** bu pakette: `react` yalnız hook için peer'dir,
+çekirdek saf JS'tir. Canlıda milyonlarca konum düzeltmesinde sınandı.
+
+![demo](docs/demo.png)
+
+> Benzetim kanıtı: ±15m gürültülü GPS → ham sapma 5.9m, Kalman sonrası 2.6m.
+> `demo/index.html`'i açıp kendin izle.
+
+Belgeler: [API](docs/API.md) · [Canlı demo](demo/index.html)
 
 ## Neler var?
 
