@@ -1,0 +1,17 @@
+{
+  "name": "@tulvez/gps-takip",
+  "version": "1.0.0",
+  "description": "Mavi ok GPS takip çekirdeği — self-host Kalman filtre + yol-yönlü ok + 3B eğim (Tulvez Harita'dan)",
+  "type": "module",
+  "main": "src/useUserLocation.js",
+  "exports": {
+    ".": "./src/useUserLocation.js",
+    "./kalman": "./src/kalman.js",
+    "./ok": "./src/arrow.js",
+    "./map3d": "./src/map3d.js"
+  },
+  "peerDependencies": {
+    "react": ">=18"
+  },
+  "license": "MIT"
+}
