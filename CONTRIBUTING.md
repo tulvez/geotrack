@@ -1,27 +1,28 @@
 # Katkı Kuralları — geotrack
 
-**Bu repo bakımlı-kapalı modelle yürür: dışarıdan PR kabul edilmez.**
+**Biz bu repoyu bakımlı-kapalı modelle yürütüyoruz: dışarıdan PR kabul etmiyoruz.**
 
-## Neden?
-`geotrack`, Tulvez Harita'nın canlı takip çekirdeğidir. Her satır üretim
-yükü taşır; plansız değişiklik navigasyonu bozar. Kaliteyi korumak için
-değişiklikler yalnız bakım ekibince yapılır.
+## Neden böyle yapıyoruz?
+`geotrack`, Tulvez Haritalar'ın canlı takip çekirdeğinin açık kaynak hâlidir.
+Her satır üretim yükü taşır; plansız bir değişiklik navigasyondaki milyonlarca
+sürücüyü etkiler. Kaliteyi korumak için değişiklikleri yalnız biz yapıyoruz.
 
-## Ne yapabilirsin?
-- **Hata bildir:** Issues sekmesi AÇIKTIR — somut hata raporu (adım adım
-  tekrar, beklenen/gerçek davranış, ortam) her zaman hoş karşılanır.
-- **Fikir öner:** Issues'ta `fikir` etiketiyle öner; EVET dersek biz yazarız.
-- **Çatalla:** MIT lisansıyla çatallayıp dilediğin gibi kullanabilirsin —
-  yalnız geri birleştirme (PR) kabul edilmez.
+## Bize nasıl yardım edersin?
+- **Hata bildir:** Issues sekmesi açıktır. Tekrar adımları + beklenen/gerçek
+  davranış + ortam bilgisiyle yaz, biz bakalım.
+- **Fikir öner:** Issues'ta `fikir` etiketiyle öner; beğenirsek biz yazarız,
+  adını sürüm notuna ekleriz.
+- **Çatalla:** MIT + NOTICE koşullarıyla dilediğin gibi kullanabilirsin —
+  yalnız geri birleştirme (PR) kabul etmiyoruz.
 
-## Bakım ekibi dışı PR'lar
-İstisnasız kapatılır (kırgınlık yok — yukarıdaki yollar açık). Güvenlik
-açığı bulduysan Issues'a DEĞİL, `SECURITY.md`'deki adrese yaz.
+## Güvenlik açığı bulduysan
+Herkese açık Issues'a yazma, `SECURITY.md`'deki adrese e-posta at. 72 saat
+içinde döneriz.
 
 ---
 
 # Contributing — geotrack (EN)
 
-**Maintainer-only model: external PRs are not accepted.** Bug reports and
-ideas via Issues are welcome; forks are free (MIT). See `SECURITY.md` for
-vulnerability reports.
+**We maintain this repo maintainer-only: external PRs are not accepted.**
+Bug reports and ideas via Issues are welcome; forks are free under MIT +
+NOTICE (keep our name). See `SECURITY.md` for vulnerabilities.

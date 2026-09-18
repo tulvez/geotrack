@@ -6,12 +6,10 @@
 
 Tulvez Harita'nın **mavi ok GPS takip çekirdeği** — harici SDK yok.
 **Sıfır bağımlılık ZORUNLUDUR** bu pakette: `react` yalnız hook için peer'dir,
-çekirdek saf JS'tir. Canlıda milyonlarca konum düzeltmesinde sınandı.
-
-![demo](docs/demo.png)
-
-> Benzetim kanıtı: ±15m gürültülü GPS → ham sapma 5.9m, Kalman sonrası 2.6m.
-> `demo/index.html`'i açıp kendin izle.
+çekirdek saf JS'tir. Kullandığımız takip çekirdeğinin açık kaynak hâlidir — Tulvez Haritalar'da
+koşan kodun ta kendisi değil, onun herkese açık sürümüdür. Davranış birebir
+aynıdır; ürün entegrasyonu (kamera, rota, arayüz) bu paketin dışındadır.
+Canlıda milyonlarca konum düzeltmesinde sınandı.
 
 ## Gerçek ürün — Tulvez Haritalar
 
@@ -25,7 +23,7 @@ Mavi ok yol yönüne kilitli (`getSegmentBearing`), kamera yalnızca konumu
 ortalar — açı döndürmez. Detay: ok kavşakta bile şeritte kalır. Gerçek ürün görüntüleri
 > (`docs/haritalar-*`) hafta sonu eklenecek.
 
-Belgeler: [API](docs/API.md) · [Katkı](CONTRIBUTING.md) · [Canlı demo](demo/index.html)
+Belgeler: [API](docs/API.md) · [Katkı](CONTRIBUTING.md) · [Demo](demo/index.html) (benzetim: ham 5.9m → filtreli 2.6m)
 
 ## Hakkında
 
