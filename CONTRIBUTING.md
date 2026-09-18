@@ -19,6 +19,14 @@ sürücüyü etkiler. Kaliteyi korumak için değişiklikleri yalnız biz yapıy
 Herkese açık Issues'a yazma, `SECURITY.md`'deki adrese e-posta at. 72 saat
 içinde döneriz.
 
+## Commit dili (bizim kuralımız)
+`[alan ya da konu]: yapılan iş` — kısa, resmi, samimi değil.
+
+- `[kalman]: titreme kilidi 2m'ye çekildi`
+- `[ok]: kavşak ortalaması 60m pencereye alındı`
+- `[demo]: hız göstergesi eklendi`
+- `[belge]: API tablosu güncellendi`
+
 ---
 
 # Contributing — geotrack (EN)

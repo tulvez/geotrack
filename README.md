@@ -50,6 +50,26 @@ iyileştirmeler önce buraya, sonra ürüne akar. Tek yönlü besleme —
 | `src/map3d.js` | 3B perspektif eğim yardımcısı |
 | `src/vendor/kalmanjs.js` | wouterbulten/kalmanjs (MIT, hız kanalı) — aynen gömülü |
 
+## Kurulum
+
+```bash
+npm install @tulvez/geotrack
+```
+
+```jsx
+import { useUserLocation } from '@tulvez/geotrack'
+import { getSegmentBearing } from '@tulvez/geotrack/ok'
+
+function Takip() {
+  const { konum, hiz } = useUserLocation({ izle: true })
+  // ...
+}
+```
+
+Gereksinim: `react >= 18` (yalnız hook için peer bağımlılık).
+React'sız kullanım: `import { PositionKalman } from '@tulvez/geotrack/kalman'`
+doğrudan içe aktarılabilir — çekirdek saf JS'tir.
+
 ## Kullanım
 
 ```jsx
