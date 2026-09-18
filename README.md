@@ -20,7 +20,9 @@ Aynı kod, canlı navigasyonda (gece modu, Pirinç Atlas çizgisi):
 | ![3d](docs/haritalar-3d.jpeg) | ![2d](docs/haritalar-2d.jpeg) |
 
 Mavi ok yol yönüne kilitli (`getSegmentBearing`), kamera yalnızca konumu
-ortalar — açı döndürmez. Detay: ok kavşakta bile şeritte kalır. Gerçek ürün görüntüleri
+ortalar — açı döndürmez. Detay: ok kavşakta bile şeritte kalır.
+
+![detay](docs/haritalar-detay.jpeg) Gerçek ürün görüntüleri
 > (`docs/haritalar-*`) hafta sonu eklenecek.
 
 Belgeler: [API](docs/API.md) · [Katkı](CONTRIBUTING.md) · [Demo](demo/index.html) (benzetim: ham 5.9m → filtreli 2.6m)
