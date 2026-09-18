@@ -11,7 +11,18 @@ Tulvez Harita'nın **mavi ok GPS takip çekirdeği** — harici SDK yok.
 ![demo](docs/demo.png)
 
 > Benzetim kanıtı: ±15m gürültülü GPS → ham sapma 5.9m, Kalman sonrası 2.6m.
-> `demo/index.html`'i açıp kendin izle. Gerçek ürün görüntüleri
+> `demo/index.html`'i açıp kendin izle.
+
+## Gerçek ürün — Tulvez Haritalar
+
+Aynı kod, canlı navigasyonda (gece modu, Pirinç Atlas çizgisi):
+
+| 3B takip (eğimli) | 2B takip (üstten) |
+|---|---|
+| ![3d](docs/haritalar-3d.jpeg) | ![2d](docs/haritalar-2d.jpeg) |
+
+Mavi ok yol yönüne kilitli (`getSegmentBearing`), kamera yalnızca konumu
+ortalar — açı döndürmez. Detay: ok kavşakta bile şeritte kalır. Gerçek ürün görüntüleri
 > (`docs/haritalar-*`) hafta sonu eklenecek.
 
 Belgeler: [API](docs/API.md) · [Katkı](CONTRIBUTING.md) · [Canlı demo](demo/index.html)
